@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Ticket pricing logic
     const ticketPrices = {
-        'ticket_only': 'Rp. 100.000',
-        'bundling': 'Rp. 130.000'
+        'ticket_only': 'Rp100.000',
+        'bundling': 'Rp130.000'
     };
 
     // Show payment section only when a ticket is selected
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Optional: Check file size (e.g. max 5MB)
             if (file.size > 5 * 1024 * 1024) {
-                alert('Peringatan: Maximum image size 5MB.');
+                alert('Warning: Maximum image size 5MB.');
                 this.value = '';
                 return;
             }
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.style.pointerEvents = 'none';
 
         // Real API call to Google sheets
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzNtc8KtV_kH_V3FNDh22CK1dBPlDdsNeqmmub2LKErECy1mamp4162Rjnje82qsiUKLA/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyk95ZbPWTQviIvEnyMdq3DbJ567ur4WXtdoOPEXLzNqUrCdm4YI-lnreAwpobbI33Q/exec';
 
         const file = fileInput.files[0];
         const reader = new FileReader();
