@@ -19,14 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
     ticketRadios.forEach(radio => {
         radio.addEventListener('change', (e) => {
             const selectedType = e.target.value;
-            
+
             // Set the price in the QRIS box
             displayTotalAmount.textContent = ticketPrices[selectedType];
-            
+
             // Show payment section smoothly
             if (!paymentSection.classList.contains('visible')) {
                 paymentSection.classList.add('visible');
-                
+
                 // Allow CSS transition to kick in
                 setTimeout(() => {
                     document.getElementById('name').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -37,38 +37,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Handle file upload preview
-    fileInput.addEventListener('change', function(e) {
+    fileInput.addEventListener('change', function (e) {
         const file = e.target.files[0];
-        
+
         if (file) {
             // Check if file is an image
             if (!file.type.match('image.*')) {
-                alert('Peringatan: File yang diupload harus berupa gambar (JPEG, PNG).');
+                alert('Warning: Uploaded files must be images.');
                 this.value = '';
                 return;
             }
 
             // Optional: Check file size (e.g. max 5MB)
             if (file.size > 5 * 1024 * 1024) {
-                alert('Peringatan: Ukuran gambar maksimal 5MB.');
+                alert('Peringatan: Maximum image size 5MB.');
                 this.value = '';
                 return;
             }
 
             const reader = new FileReader();
-            
-            reader.onload = function(e) {
+
+            reader.onload = function (e) {
                 previewImage.src = e.target.result;
                 previewContainer.style.display = 'block';
-                uploadText.textContent = 'Ganti gambar bukti transfer';
+                uploadText.textContent = 'Change the proof of transfer image';
                 uploadIcon.style.display = 'none';
             }
-            
+
             reader.readAsDataURL(file);
         } else {
             // If user cancels the file dialog
             previewContainer.style.display = 'none';
-            uploadText.textContent = 'Klik untuk upload bukti transfer';
+            uploadText.textContent = 'Click to upload proof of transfer';
             uploadIcon.style.display = 'block';
         }
     });
@@ -77,14 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('registrationForm');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         // Basic validation check for file
         if (!fileInput.files[0]) {
-            alert('Silakan upload gambar bukti transfer Anda.');
-            
+            alert('Please upload an image of your proof of transfer.');
+
             // Scroll to the upload section
             document.querySelector('.file-upload').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
+
             // Add a small shaking animation to draw attention
             document.querySelector('.file-upload').animate([
                 { transform: 'translateX(0)' },
@@ -94,24 +94,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 { transform: 'translateX(10px)' },
                 { transform: 'translateX(0)' }
             ], { duration: 400 });
-            
+
             return;
         }
 
         const submitBtn = document.getElementById('submitBtn');
         const originalContent = submitBtn.innerHTML;
-        
+
         submitBtn.innerHTML = 'Processing... <span class="spinner">⏳</span>';
         submitBtn.style.opacity = '0.9';
         submitBtn.style.pointerEvents = 'none';
 
         // Real API call to Google sheets
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzNtc8KtV_kH_V3FNDh22CK1dBPlDdsNeqmmub2LKErECy1mamp4162Rjnje82qsiUKLA/exec';
-        
+
         const file = fileInput.files[0];
         const reader = new FileReader();
-        
-        reader.onload = function(event) {
+
+        reader.onload = function (event) {
             const formData = {
                 name: document.getElementById('name').value,
                 major: document.getElementById('major').value,
@@ -131,40 +131,40 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'text/plain;charset=utf-8'
                 }
             })
-            .then(response => response.json())
-            .then(res => {
-                if(res.status === "success") {
-                    const successPage = document.getElementById('successPage');
-                    const header = document.querySelector('.header-form');
-                    
-                    form.style.display = 'none';
-                    if (header) header.style.display = 'none';
-                    successPage.style.display = 'block';
-                    
-                    form.reset();
-                    paymentSection.classList.remove('visible');
-                    
-                    previewContainer.style.display = 'none';
-                    previewImage.src = '';
-                    uploadText.textContent = 'Klik untuk upload bukti transfer';
-                    uploadIcon.style.display = 'block';
-                } else {
-                    alert("Terjadi kesalahan sistem: " + res.message);
-                }
-            })
-            .catch(err => {
-                alert("Gagal mengirim data. Pastikan koneksi internet stabil.");
-                console.error("Error submitting form:", err);
-            })
-            .finally(() => {
-                submitBtn.innerHTML = originalContent;
-                submitBtn.style.opacity = '1';
-                submitBtn.style.pointerEvents = 'auto';
-                
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+                .then(response => response.json())
+                .then(res => {
+                    if (res.status === "success") {
+                        const successPage = document.getElementById('successPage');
+                        const header = document.querySelector('.header-form');
+
+                        form.style.display = 'none';
+                        if (header) header.style.display = 'none';
+                        successPage.style.display = 'block';
+
+                        form.reset();
+                        paymentSection.classList.remove('visible');
+
+                        previewContainer.style.display = 'none';
+                        previewImage.src = '';
+                        uploadText.textContent = 'Click to upload proof of transfer';
+                        uploadIcon.style.display = 'block';
+                    } else {
+                        alert("A system error occured: " + res.message);
+                    }
+                })
+                .catch(err => {
+                    alert("Failed to send data. Make sure your internet connection is stable.");
+                    console.error("Error submitting form:", err);
+                })
+                .finally(() => {
+                    submitBtn.innerHTML = originalContent;
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.pointerEvents = 'auto';
+
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
         };
-        
+
         reader.readAsDataURL(file);
     });
 
@@ -175,14 +175,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('registrationForm');
             const header = document.querySelector('.header-form');
             const successPage = document.getElementById('successPage');
-            
+
             successPage.style.display = 'none';
             form.style.display = 'block';
             if (header) header.style.display = 'block';
-            
+
             // Reset pricing display
             displayTotalAmount.textContent = 'Rp. 0';
-            
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }

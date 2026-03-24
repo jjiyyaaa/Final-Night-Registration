@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,12 @@
     <meta name="theme-color" content="#0a192f">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="page-wrapper">
         <div class="title-panel">
@@ -25,88 +29,94 @@
         <div class="container">
             <div class="header-form">
                 <h2>Final Night Registration</h2>
-                <p>Silakan lengkapi data diri Anda</p>
+                <p>Please complete your personal data</p>
             </div>
 
             <form id="registrationForm">
-            <div class="ticket-info">
-                <h3>Pilih Kategori Tiket</h3>
-                <div class="ticket-options">
-                    <label class="ticket-option">
-                        <input type="radio" name="ticketType" value="ticket_only" required>
-                        <span class="radio-custom"></span>
-                        <div class="option-details">
-                            <span class="option-name">Ticket Only</span>
-                            <span class="option-price">Rp. 100.000</span>
-                        </div>
-                    </label>
-                    <label class="ticket-option">
-                        <input type="radio" name="ticketType" value="bundling">
-                        <span class="radio-custom"></span>
-                        <div class="option-details">
-                            <span class="option-name">Bundling Ticket + Photobooth</span>
-                            <span class="option-price">Rp. 130.000</span>
-                        </div>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="name">Nama Lengkap</label>
-                <input type="text" id="name" required placeholder="Masukkan nama lengkap Anda" autocomplete="name">
-            </div>
-
-            <div class="form-group">
-                <label for="major">Major (Jurusan)</label>
-                <input type="text" id="major" required placeholder="Contoh: Information Technology">
-            </div>
-
-            <div class="form-group">
-                <label for="batch">Batch (Angkatan)</label>
-                <input type="number" id="batch" required placeholder="Contoh: 2023" min="2000" max="2100">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" id="email" required placeholder="nama@student.president.ac.id" autocomplete="email">
-            </div>
-
-            <div class="form-group">
-                <label for="phone">No. Telepon / WhatsApp</label>
-                <input type="tel" id="phone" required placeholder="Contoh: 081234567890" autocomplete="tel">
-            </div>
-
-            <div class="payment-section" id="paymentSection">
-                <div class="qris-container">
-                    <img id="qrisImage" src="qris_payment_code.png" alt="QRIS Payment Mr & Ms PU" />
-                    <p class="qris-instruction">Scan QRIS di atas untuk melakukan pembayaran</p>
-                    <p class="total-price-display">Total Tagihan: <span id="displayTotalAmount">Rp. 0</span></p>
-                </div>
-
-                <div class="form-group">
-                    <label>Upload Bukti Transfer</label>
-                    <label class="file-upload" tabindex="0">
-                        <div class="upload-icon">📸</div>
-                        <span>Klik untuk upload bukti transfer</span>
-                        <input type="file" id="proofOfTransfer" accept="image/*">
-                    </label>
-                    <div class="preview-container" id="previewContainer">
-                        <img id="previewImage" src="" alt="Preview Bukti Transfer">
+                <div class="ticket-info">
+                    <h3>Select Ticket Category</h3>
+                    <div class="ticket-options">
+                        <label class="ticket-option">
+                            <input type="radio" name="ticketType" value="ticket_only" required>
+                            <span class="radio-custom"></span>
+                            <div class="option-details">
+                                <span class="option-name">Ticket Only</span>
+                                <span class="option-price">Rp100.000</span>
+                            </div>
+                        </label>
+                        <label class="ticket-option">
+                            <input type="radio" name="ticketType" value="bundling">
+                            <span class="radio-custom"></span>
+                            <div class="option-details">
+                                <span class="option-name">Bundling Ticket + Photobooth</span>
+                                <span class="option-price">Rp130.000</span>
+                            </div>
+                        </label>
                     </div>
                 </div>
 
-                <button type="submit" class="submit-btn" id="submitBtn">Complete Registration <span class="arrow">→</span></button>
-            </div>
-        </form>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required placeholder="Enter your full name" autocomplete="name">
+                </div>
 
-        <div id="successPage" class="success-page" style="display: none;">
-            <div class="success-icon">✨</div>
-            <h2>Registration Successful!</h2>
-            <p>Terima kasih telah mendaftar Final Night Mr. & Ms. President University.</p>
-            <p>Kami akan segera memproses pembayaran Anda dan mengirimkan tiket serta informasi lebih lanjut melalui Email / WhatsApp yang terdaftar.</p>
-            <button id="backToHome" class="submit-btn" style="margin-top: 2rem;">Kembali ke Awal <span class="arrow">↺</span></button>
+                <div class="form-group">
+                    <label for="major">Major</label>
+                    <input type="text" id="major" required placeholder="Example: Informatics">
+                </div>
+
+                <div class="form-group">
+                    <label for="batch">Batch</label>
+                    <input type="number" id="batch" required placeholder="Example: 2025" min="2020" max="2026">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="name@student.president.ac.id"
+                        autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number/WhatsApp</label>
+                    <input type="tel" id="phone" required placeholder="Example: 081234567890" autocomplete="tel">
+                </div>
+
+                <div class="payment-section" id="paymentSection">
+                    <div class="qris-container">
+                        <img id="qrisImage" src="qris_payment_code.jpeg"
+                            alt="QRIS Payment Mr. & Ms. President University" />
+                        <p class="qris-instruction">Scan the QRIS above to make a payment</p>
+                        <p class="total-price-display">Total Bill: <span id="displayTotalAmount">Rp. 0</span></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload Proof of Transfer</label>
+                        <label class="file-upload" tabindex="0">
+                            <div class="upload-icon">📸</div>
+                            <span>Click to upload proof of transfer</span>
+                            <input type="file" id="proofOfTransfer" accept="image/*">
+                        </label>
+                        <div class="preview-container" id="previewContainer">
+                            <img id="previewImage" src="" alt="Preview Bukti Transfer">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">Complete Registration <span
+                            class="arrow">→</span></button>
+                </div>
+            </form>
+
+            <div id="successPage" class="success-page" style="display: none;">
+                <div class="success-icon">✨</div>
+                <h2>Registration Successful!</h2>
+                <p>Thank you for registering for Mr. & Ms. President University's Final Night.</p>
+                <p>We will process your payment and send you the ticket and further information via the registered Email
+                    / WhatsApp.</p>
+                <button id="backToHome" class="submit-btn" style="margin-top: 2rem;">Back to Home <span
+                        class="arrow">↺</span></button>
+            </div>
         </div>
-    </div>
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 </body>
+
 </html>
