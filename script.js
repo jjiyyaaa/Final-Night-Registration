@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (header) header.style.display = 'block';
 
             // Reset pricing display
-            displayTotalAmount.textContent = 'Rp. 0';
+            displayTotalAmount.textContent = 'Rp0';
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
