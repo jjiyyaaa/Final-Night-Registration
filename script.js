@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Ticket pricing logic
     const ticketPrices = {
-        'ticket_only': 'Rp100.000',
-        'bundling': 'Rp130.000'
+        'ticket_only': 'Rp70.000',
+        'bundling': 'Rp100.000'
     };
 
     // Show payment section only when a ticket is selected
