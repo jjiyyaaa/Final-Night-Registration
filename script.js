@@ -15,25 +15,37 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.header-form').insertAdjacentHTML('beforeend', '<p id="loadingStatus" style="color: #cda434; font-style: italic; margin-top: 10px;">Checking seat availability...</p>');
     document.getElementById('registrationForm').style.display = 'none';
 
-    fetch(SCRIPT_URL)
-        .then(res => res.json())
-        .then(data => {
-            const loadingStatus = document.getElementById('loadingStatus');
-            if(loadingStatus) loadingStatus.style.display = 'none';
-            
-            if (data.isFull) {
-                document.querySelector('.header-form').style.display = 'none';
-                document.getElementById('closedPage').style.display = 'block';
-            } else {
-                document.getElementById('registrationForm').style.display = 'block';
-            }
-        })
-        .catch(err => {
-            const loadingStatus = document.getElementById('loadingStatus');
-            if(loadingStatus) loadingStatus.style.display = 'none';
-            document.getElementById('registrationForm').style.display = 'block'; // Fallback to open
-            console.error("Error checking availability:", err);
-        });
+    // TEMPORARY CLOSE OVERRIDE
+    const isTemporarilyClosed = true;
+
+    if (isTemporarilyClosed) {
+        const loadingStatus = document.getElementById('loadingStatus');
+        if(loadingStatus) loadingStatus.style.display = 'none';
+        document.querySelector('.header-form').style.display = 'none';
+        document.getElementById('closedPage').style.display = 'block';
+    }
+    
+    if (!isTemporarilyClosed) {
+        fetch(SCRIPT_URL)
+            .then(res => res.json())
+            .then(data => {
+                const loadingStatus = document.getElementById('loadingStatus');
+                if(loadingStatus) loadingStatus.style.display = 'none';
+                
+                if (data.isFull) {
+                    document.querySelector('.header-form').style.display = 'none';
+                    document.getElementById('closedPage').style.display = 'block';
+                } else {
+                    document.getElementById('registrationForm').style.display = 'block';
+                }
+            })
+            .catch(err => {
+                const loadingStatus = document.getElementById('loadingStatus');
+                if(loadingStatus) loadingStatus.style.display = 'none';
+                document.getElementById('registrationForm').style.display = 'block'; // Fallback to open
+                console.error("Error checking availability:", err);
+            });
+    }
 
     // Ticket pricing logic
     const ticketPrices = {
