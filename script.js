@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadIcon = document.querySelector('.upload-icon');
     const displayTotalAmount = document.getElementById('displayTotalAmount');
 
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwpljhwVb3wRv8I2JNOYKxomzeICteMGzLy4CC1tKoEryR5W51WRWcOf88mP1D8VKzrsA/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwUQA75GnwBvL8Mx8cVJZ4OHPDXWgyNC3B9QbaeTSMCx5E5o3H4IZNMm_I9t6IxsO-SHQ/exec';
 
     // Check available seats
     document.querySelector('.header-form').insertAdjacentHTML('beforeend', '<p id="loadingStatus" style="color: #cda434; font-style: italic; margin-top: 10px;">Checking seat availability...</p>');
