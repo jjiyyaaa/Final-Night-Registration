@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadIcon = document.querySelector('.upload-icon');
     const displayTotalAmount = document.getElementById('displayTotalAmount');
 
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyk95ZbPWTQviIvEnyMdq3DbJ567ur4WXtdoOPEXLzNqUrCdm4YI-lnreAwpobbI33Q/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwpljhwVb3wRv8I2JNOYKxomzeICteMGzLy4CC1tKoEryR5W51WRWcOf88mP1D8VKzrsA/exec';
 
     // Check available seats
     document.querySelector('.header-form').insertAdjacentHTML('beforeend', '<p id="loadingStatus" style="color: #cda434; font-style: italic; margin-top: 10px;">Checking seat availability...</p>');
@@ -20,23 +20,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // Ubah nilai di bawah ini menjadi `true` untuk LOCK/Tutup form
     // Ubah nilai di bawah ini menjadi `false` untuk BUKA form
-    const isTemporarilyClosed = false; 
+    const isTemporarilyClosed = false;
     // ==========================================
 
     if (isTemporarilyClosed) {
         const loadingStatus = document.getElementById('loadingStatus');
-        if(loadingStatus) loadingStatus.style.display = 'none';
+        if (loadingStatus) loadingStatus.style.display = 'none';
         document.querySelector('.header-form').style.display = 'none';
         document.getElementById('closedPage').style.display = 'block';
     }
-    
+
     if (!isTemporarilyClosed) {
         fetch(SCRIPT_URL)
             .then(res => res.json())
             .then(data => {
                 const loadingStatus = document.getElementById('loadingStatus');
-                if(loadingStatus) loadingStatus.style.display = 'none';
-                
+                if (loadingStatus) loadingStatus.style.display = 'none';
+
                 if (data.isFull) {
                     document.querySelector('.header-form').style.display = 'none';
                     document.getElementById('closedPage').style.display = 'block';
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
                 const loadingStatus = document.getElementById('loadingStatus');
-                if(loadingStatus) loadingStatus.style.display = 'none';
+                if (loadingStatus) loadingStatus.style.display = 'none';
                 document.getElementById('registrationForm').style.display = 'block'; // Fallback to open
                 console.error("Error checking availability:", err);
             });
