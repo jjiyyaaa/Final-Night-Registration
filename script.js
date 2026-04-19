@@ -15,8 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.header-form').insertAdjacentHTML('beforeend', '<p id="loadingStatus" style="color: #cda434; font-style: italic; margin-top: 10px;">Checking seat availability...</p>');
     document.getElementById('registrationForm').style.display = 'none';
 
-    // TEMPORARY CLOSE OVERRIDE
-    const isTemporarilyClosed = true;
+    // ==========================================
+    // PENGATURAN STATUS FORMULIR (UNTUK GITHUB)
+    // ==========================================
+    // Ubah nilai di bawah ini menjadi `true` untuk LOCK/Tutup form
+    // Ubah nilai di bawah ini menjadi `false` untuk BUKA form
+    const isTemporarilyClosed = false; 
+    // ==========================================
 
     if (isTemporarilyClosed) {
         const loadingStatus = document.getElementById('loadingStatus');
